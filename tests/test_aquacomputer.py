@@ -622,6 +622,7 @@ def test_octo_get_status_from_hwmon(mockOctoDevice, tmp_path):
     (tmp_path / "power8_input").write_text("20000\n")
     (tmp_path / "in7_input").write_text("12090\n")
     (tmp_path / "curr8_input").write_text("2\n")
+    (tmp_path / "fan9_input").write_text("603\n")
     (tmp_path / "temp5_input").write_text("50000\n")  # Soft. Sensor 1 temperature
     (tmp_path / "temp6_input").write_text("60000\n")  # Soft. Sensor 2 temperature
     (tmp_path / "temp7_input").write_text("50000\n")  # Soft. Sensor 3 temperature
@@ -678,6 +679,7 @@ def test_octo_get_status_from_hwmon(mockOctoDevice, tmp_path):
         ("Fan 8 power", pytest.approx(0.02, 0.1), "W"),
         ("Fan 8 voltage", pytest.approx(12.09, 0.1), "V"),
         ("Fan 8 current", pytest.approx(0.002, 0.1), "A"),
+        ("Flow sensor", pytest.approx(603, 0.1), "dL/h"),
         ("Soft. Sensor 1", pytest.approx(50, 0.1), "°C"),
         ("Soft. Sensor 2", pytest.approx(60, 0.1), "°C"),
         ("Soft. Sensor 3", pytest.approx(50, 0.1), "°C"),
